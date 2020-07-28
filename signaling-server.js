@@ -47,7 +47,7 @@ io.sockets.on('connection', function (socket) {
         socket.channels = {};
     sockets[socket.id] = socket;
 
-    console.log("["+ socket.id + "] connection accepted");
+    console.log("["+ socket.id + "] connection accepted asdfasdfasd");
     socket.on('disconnect', function () {
         for (var channel in socket.channels) {
             part(channel);
