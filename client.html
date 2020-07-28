@@ -255,18 +255,14 @@
              * attach it to an <audio> or <video> tag if they give us access. */
             console.log("Requesting access to local audio / video inputs");
 
-
-            navigator.mediaDevices.getUserMedia = (navigator.mediaDevices.getUserMedia ||
-                navigator.webkitGetUserMedia ||
-                navigator.mozGetUserMedia ||
-                navigator.msGetUserMedia);
+            navigator.getWebcam = (navigator.getUserMedia || navigator.webKitGetUserMedia || navigator.moxGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
 
             attachMediaStream = function (element, stream) {
                 console.log('DEPRECATED, attachMediaStream will soon be removed.');
                 element.srcObject = stream;
             };
 
-            navigator.mediaDevices.getUserMedia({ "audio": USE_AUDIO, "video": USE_VIDEO },
+            navigator.getWebcam({ "audio": USE_AUDIO, "video": USE_VIDEO },
                 function (stream) { /* user accepted access to a/v */
                     console.log("Access granted to audio/video");
                     local_media_stream = stream;
