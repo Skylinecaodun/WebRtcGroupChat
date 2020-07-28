@@ -43,7 +43,8 @@ var sockets = {};
  * the peer connection and will be streaming audio/video between eachother.
  */
 io.sockets.on('connection', function (socket) {
-    socket.channels = {};
+    try{
+        socket.channels = {};
     sockets[socket.id] = socket;
 
     console.log("["+ socket.id + "] connection accepted");
@@ -115,5 +116,9 @@ io.sockets.on('connection', function (socket) {
         if (peer_id in sockets) {
             sockets[peer_id].emit('sessionDescription', {'peer_id': socket.id, 'session_description': session_description});
         }
-    });
+    });  
+    } catch (err){
+        console.log("error caught" + err);
+    }
+  
 });
